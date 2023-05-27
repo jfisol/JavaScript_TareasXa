@@ -16,4 +16,4 @@ totalEliminado=[]; //Almacena la suma total de los árticulos eliminados del car
 
 ```
 
-:eyes: En classroom subí la tarea 14 minutos antes del horario y me olvide de picar el botón entregar , lo precione a las 9:00pm Guatemala (12:00pm argentina) por eso aparece entregada con retraso :disappointed_relieved:
+:eyes: En classroom subí la tarea 14 minutos antes del horario y me olvide de picar el botón entregar , lo presione a las 9:00pm Guatemala (12:00pm argentina) por eso aparece entregada con retraso :disappointed_relieved:
