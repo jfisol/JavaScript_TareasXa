@@ -1,9 +1,9 @@
 //Esta capa contiene logica del negocio
 const {Libraries} = require('../models/library-models');
 const { Books } = require('../models/book-models');
-Libraries.hasMany(Books,{ foreignKey:"Library_id"});
+//Libraries.hasMany(Books,{ foreignKey:"Library_id"});
 //se anade una clave libreiaId a la tabla libros
-Books.belongsTo(Libraries,{as: "Libros"});
+//Books.belongsTo(Libraries,{as: "Libros"});
 //obtener librerias
 async function getAll(){
     const listLibrery = await Libraries.findAll({
