@@ -17,4 +17,4 @@ En esta versión se implemento la estructura y organización del proyecto, méto
 --->`readme.md` Descripción, resumen informativo sobre el desarrollo y avance del versionado.
  
 `información`: Los requisitos para autenticación,se implementara lo antes posible.
---
+
