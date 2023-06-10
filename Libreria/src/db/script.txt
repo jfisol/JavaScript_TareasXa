@@ -1,0 +1,5 @@
+--bd libreria
+CREATE database Biblioteca;
+use Biblioteca;
+
+select * from Libraries l 
