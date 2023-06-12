@@ -1,9 +1,9 @@
 //Esta capa contiene logica del negocio
 const {Libraries} = require('../models/library-models');
 const { Books } = require('../models/book-models');
-//Libraries.hasMany(Books,{ foreignKey:"Library_id"});
+Libraries.hasMany(Books,{as:"Libros", foreignKey:"Library_id"});
 //se anade una clave libreiaId a la tabla libros
-//Books.belongsTo(Libraries,{as: "Libros"});
+//const { Books } = require('../models/book-models');
 //obtener librerias
 async function getAll(){
     const listLibrery = await Libraries.findAll({
@@ -12,6 +12,7 @@ async function getAll(){
       },
       include:{
         model: Books,
+        as: "Libros",
         attributes: ['isbn','titulo','autor','year']
       },
     });
@@ -21,8 +22,14 @@ async function getAll(){
 //obtener libreria por id
 async function getById(id){
   
- const library = await Libraries.findByPk(id);
- if((library == null)){
+ const library = await Libraries.findByPk(id,{
+  include:{
+    model: Books,
+    as: "Libros",
+    attributes: ['isbn','titulo','autor','year']
+  },
+ });
+ if((library == null) || (Books == null)){
     throw new Error(`Usuario con id #${id} no encontrado`);
  }
  if(library.estado == 0){
@@ -44,6 +51,25 @@ const libraryCreated = await librery.save();
 return libraryCreated;
 
 }
+//crear libro en libreria
+async function createBookInLibrery(isbn, titulo, autor, year, library_id) {
+  const library = await Libraries.findByPk(library_id);
+    if((library.estado == 0) || (library == null)){
+     return `${library_id} de Libreria no encontrada`;
+     }
+     else{
+  const book = new Books();
+  book.isbn = isbn;
+    book.titulo = titulo;
+    book.autor = autor;
+    book.year = year;
+    book.Library_id = library_id;
+    
+ const bookInLibraryCreated = await book.save();
+ //const library = await Libraries.getById(library_id);
+  return bookInLibraryCreated;
+     }
+  }
 
 //modificar Libreria
 async function editLibrary(id, name, location, telefono, estado){
@@ -79,4 +105,4 @@ async function editLibrary(id, name, location, telefono, estado){
     return libreryEdited;
   }
 
-module.exports = { getAll, getById, createLibrery, editLibrary, deleteLibrary }
+module.exports = { getAll, getById, createLibrery, editLibrary, deleteLibrary, createBookInLibrery}

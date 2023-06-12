@@ -1,5 +1,33 @@
---bd libreria
+--Crear base de datos
+
 CREATE database Biblioteca;
 use Biblioteca;
 
-select * from Libraries l 
+--Crear tabla Libraries
+CREATE TABLE Libraries(
+    id int primary key auto_increment,
+    name varchar(100),
+    location varchar(100),
+    telefono varchar(10),
+    estado tinyint DEFAULT 1
+    
+);
+
+--Crear tabla Books
+CREATE TABLE Books(
+    id int primary key auto_increment,
+    isbn int not null UNIQUE,
+    titulo varchar(150),
+    autor varchar(150),
+    year varchar(15),
+    estado tinyint(1) DEFAULT 1,
+    Library_id int,
+    FOREIGN KEY (Library_id) references Libraries(id)
+);
+
+--Crear tabla Logins(users)
+CREATE TABLE Logins (
+    id primary key auto_increment
+    name varchar(150),
+    password varchar(150),
+);

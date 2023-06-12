@@ -1,6 +1,7 @@
 const {Model, DataTypes} = require('sequelize');
 const {dbInstance} = require('../db/sequelize-config');
 
+
 class Books extends Model{
 
 };
@@ -43,7 +44,8 @@ Books.init({
         type: DataTypes.TINYINT
     },
     Library_id: {
-        type: DataTypes.TINYINT
+        type: DataTypes.TINYINT,
+        
     },
     
 },{
