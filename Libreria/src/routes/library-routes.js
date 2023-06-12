@@ -8,15 +8,16 @@ const router = express.Router();
 
 //exportar controlador de libreria
 const libraryController = require('../controllers/library-controller');
+const { isAuthenticated } = require('../middlewares/authentication');
 //Definir rutas para librerias
 router.get('/obtener-libreria/:id',libraryController.getLibraryById);
 router.get('/obtener-librerias',libraryController.getAllLibrary);
-router.post('/crear-libreria',libraryController.createLibrery);
-router.put('/modificar-libreria/:id',libraryController.editLibrary);
-router.put('/eliminar-libreria/:id',libraryController.deletetLibrary);
+router.post('/crear-libreria',isAuthenticated,libraryController.createLibrery);
+router.put('/modificar-libreria/:id',isAuthenticated,libraryController.editLibrary);
+router.put('/eliminar-libreria/:id',isAuthenticated,libraryController.deletetLibrary);
 //falta agregar libro desde libreria
-
-module.exports = router;
+router.post('/modificar-libreria/:id/agregar-libro',isAuthenticated,libraryController.createBookInLibrery);//<---
+module.exports = router 
 
 
 
